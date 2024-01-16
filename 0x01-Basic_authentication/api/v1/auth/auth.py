@@ -10,6 +10,8 @@ from typing import (
 
 
 class Auth:
+    """Auth"""
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
         does path requires authentication or not
