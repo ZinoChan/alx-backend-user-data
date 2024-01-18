@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
- class Auth
+Auth Class
 """
+import os
 from flask import request
 from typing import (
     List,
@@ -11,12 +12,12 @@ from typing import (
 
 class Auth:
     """
-    Manages the API authentication
+    Authentication
     """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
-        get required path
+        requie auth
         """
         if path is None:
             return True
@@ -37,7 +38,7 @@ class Auth:
 
     def authorization_header(self, request=None) -> str:
         """
-        auth header
+        return auth header
         """
         if request is None:
             return None
@@ -48,6 +49,15 @@ class Auth:
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
-        user instance
+        return user instance
         """
         return None
+
+    def session_cookie(self, request=None):
+        """
+        session cookies
+        """
+        if request is None:
+            return None
+        session = os.getenv('SESSION_NAME')
+        return request.cookies.get(session)
